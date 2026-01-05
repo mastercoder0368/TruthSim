@@ -1,0 +1,26 @@
+{
+  "patient_id": "P003",
+  "demographics": {
+    "age": 45,
+    "sex": "F"
+  },
+  "symptoms": [
+    "abdominal pain",
+    "bloating",
+    "nausea",
+    "vomiting"
+  ],
+  "diagnosis": "Acute Cholecystitis",
+  "icd10_code": "K81.0",
+  "source": "MIMIC-IV-ED",
+  "noise_profile": [
+    {
+      "type": "social_cultural",
+      "level": 2
+    },
+    {
+      "type": "cognitive_processing",
+      "level": 1
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "patient_id": "P001",
+  "demographics": {
+    "age": 52,
+    "sex": "M"
+  },
+  "symptoms": [
+    "chest pain",
+    "shortness of breath",
+    "sweating",
+    "nausea"
+  ],
+  "diagnosis": "Myocardial Infarction",
+  "icd10_code": "I21.9",
+  "source": "DDXPlus",
+  "noise_profile": [
+    {
+      "type": "memory",
+      "level": 2
+    },
+    {
+      "type": "emotional_state",
+      "level": 3
+    }
+  ]
+}

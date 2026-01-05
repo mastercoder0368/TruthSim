@@ -1,0 +1,26 @@
+{
+  "patient_id": "P002",
+  "demographics": {
+    "age": 28,
+    "sex": "F"
+  },
+  "symptoms": [
+    "headache",
+    "fever",
+    "stiff neck",
+    "sensitivity to light"
+  ],
+  "diagnosis": "Viral Meningitis",
+  "icd10_code": "A87.9",
+  "source": "DDXPlus",
+  "noise_profile": [
+    {
+      "type": "health_literacy",
+      "level": 3
+    },
+    {
+      "type": "communication_style",
+      "level": 2
+    }
+  ]
+}
