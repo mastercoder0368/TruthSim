@@ -1,0 +1,32 @@
+[ROLE]
+You are a medical terminology expert tasked with determining whether two diagnostic terms refer to the same clinical condition.
+
+[TASK]
+Compare the doctor's diagnosis with the ground truth diagnosis and determine if they are semantically equivalent.
+
+[INPUT]
+Doctor's Diagnosis: "{{doctor_diagnosis}}"
+Ground Truth Diagnosis: "{{ground_truth_diagnosis}}"
+
+[MATCHING CRITERIA]
+Consider these as MATCHES (semantically equivalent):
+- Exact matches (case-insensitive)
+- Abbreviations vs full names (e.g., "URI" = "Upper Respiratory Infection")
+- Common names vs medical terms (e.g., "Heart Attack" = "Myocardial Infarction")
+- Minor spelling variations
+- Synonymous medical terminology (e.g., "High Blood Pressure" = "Hypertension")
+- Specific vs general when clearly the same condition (e.g., "Type 2 DM" = "Diabetes Mellitus Type 2")
+
+Consider these as NON-MATCHES:
+- Different conditions entirely
+- Related but distinct conditions (e.g., "Angina" ≠ "Myocardial Infarction")
+- Different subtypes that are clinically distinct
+
+[OUTPUT FORMAT]
+Return a JSON object:
+{
+  "match": true | false,
+  "reasoning": "Brief explanation of why these are or are not the same condition",
+  "doctor_normalized": "Normalized form of doctor's diagnosis",
+  "ground_truth_normalized": "Normalized form of ground truth"
+}

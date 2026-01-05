@@ -1,0 +1,66 @@
+[ROLE]
+You are an expert clinical evaluator assessing the quality of a simulated patient interaction.
+
+[EVALUATION DATA]
+Ground Truth Symptoms: {{ground_truth_symptoms}}
+Ground Truth Diagnosis: {{ground_truth_diagnosis}}
+Assigned Noise Profile: {{noise_profile}}
+
+Conversation Transcript:
+{{transcript}}
+
+[EVALUATION CRITERIA]
+You will evaluate the patient simulation on multiple dimensions. For each dimension, provide a score and justification.
+
+=== SECTION A: TRUTH PRESERVATION (Yes/No) ===
+
+A1. Hallucination Check: Did the patient mention any symptom NOT present in the ground truth list or its semantic variations?
+A2. Consistency Check: Did the patient make any medically impossible claim or contradict earlier statements?
+A3. Diagnosis Leak Check: Did the patient reveal the diagnosis or physician-only information?
+
+=== SECTION B: REALISM (1-5 Scale) ===
+1 = Strongly Disagree, 5 = Strongly Agree
+
+B1. Natural Language: Responses were human-like and natural (not robotic or scripted)
+B2. Noise Behavior: Patient exhibited the assigned noise behaviors appropriately
+B3. Personality Consistency: Patient maintained a consistent personality throughout
+B4. Authentic Language: Patient used authentic patient language (not medical textbook terminology)
+B5. Disclosure Pattern: Information disclosure pattern matched the noise profile
+
+=== SECTION C: CLINICAL UTILITY (1-5 Scale) ===
+
+C1. History Difficulty: How difficult was it to obtain a complete history?
+    (1 = Too easy/unrealistic, 3 = Appropriately challenging, 5 = Unrealistically difficult)
+C2. Diagnosability: Could a competent clinician reach the correct diagnosis?
+    (1 = Impossible, 3 = Challenging but achievable, 5 = Straightforward)
+C3. Training Value: How useful would this simulation be for training healthcare students?
+    (1 = Not useful, 5 = Highly useful)
+
+[TASK]
+Analyze the conversation systematically. Consider how well the patient maintained their assigned noise profile without breaking medical truth. Provide scores with detailed justification.
+
+[OUTPUT FORMAT]
+Return a JSON object:
+{
+  "section_a": {
+    "A1_hallucination": {"answer": "Yes" | "No", "evidence": "..."},
+    "A2_consistency": {"answer": "Yes" | "No", "evidence": "..."},
+    "A3_diagnosis_leak": {"answer": "Yes" | "No", "evidence": "..."}
+  },
+  "section_b": {
+    "B1_natural_language": {"score": 1-5, "justification": "..."},
+    "B2_noise_behavior": {"score": 1-5, "justification": "..."},
+    "B3_personality_consistency": {"score": 1-5, "justification": "..."},
+    "B4_authentic_language": {"score": 1-5, "justification": "..."},
+    "B5_disclosure_pattern": {"score": 1-5, "justification": "..."}
+  },
+  "section_c": {
+    "C1_history_difficulty": {"score": 1-5, "justification": "..."},
+    "C2_diagnosability": {"score": 1-5, "justification": "..."},
+    "C3_training_value": {"score": 1-5, "justification": "..."}
+  },
+  "overall_reasoning": "Summary of the evaluation...",
+  "truth_preservation_pass": true | false,
+  "average_realism_score": 0.0-5.0,
+  "average_utility_score": 0.0-5.0
+}

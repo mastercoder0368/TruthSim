@@ -1,0 +1,84 @@
+# TruthSim Model Configurations
+# ==============================
+
+# Patient Simulator Model (Used for both Generator and Verifier)
+patient_simulator:
+  model_name: "meta-llama/Llama-3.1-70B-Instruct"
+  provider: "together"  # Options: together, local, huggingface
+  quantization: null    # Options: null, 4bit, 8bit (for local inference)
+
+# Doctor LLMs to Evaluate
+doctor_models:
+  # Large Models (70B+)
+  - name: "Qwen-2.5-72B"
+    model_id: "Qwen/Qwen2.5-72B-Instruct"
+    provider: "together"
+    size: "72B"
+    type: "general"
+
+  - name: "Llama-3.1-70B"
+    model_id: "meta-llama/Llama-3.1-70B-Instruct"
+    provider: "together"
+    size: "70B"
+    type: "general"
+
+  - name: "Meditron-70B"
+    model_id: "epfl-llm/meditron-70b"
+    provider: "together"
+    size: "70B"
+    type: "medical"
+
+  - name: "OpenBioLLM-70B"
+    model_id: "aaditya/OpenBioLLM-Llama3-70B"
+    provider: "together"
+    size: "70B"
+    type: "medical"
+
+  # Small Models (7B-8B)
+  - name: "Llama-3.1-8B"
+    model_id: "meta-llama/Llama-3.1-8B-Instruct"
+    provider: "together"
+    size: "8B"
+    type: "general"
+
+  - name: "BioMistral-7B"
+    model_id: "BioMistral/BioMistral-7B"
+    provider: "together"
+    size: "7B"
+    type: "medical"
+
+  - name: "Mistral-7B"
+    model_id: "mistralai/Mistral-7B-Instruct-v0.2"
+    provider: "together"
+    size: "7B"
+    type: "general"
+
+# Evaluation Models
+evaluation_models:
+  diagnosis_matcher:
+    model_name: "gpt-4o"
+    provider: "openai"
+
+  llm_judge:
+    model_name: "gpt-4o"
+    provider: "openai"
+
+# Provider Configurations
+providers:
+  openai:
+    base_url: "https://api.openai.com/v1"
+    api_key_env: "OPENAI_API_KEY"
+
+  together:
+    base_url: "https://api.together.xyz/v1"
+    api_key_env: "TOGETHER_API_KEY"
+
+  anthropic:
+    base_url: "https://api.anthropic.com/v1"
+    api_key_env: "ANTHROPIC_API_KEY"
+
+  local:
+    # For local inference with transformers
+    device: "cuda"
+    torch_dtype: "bfloat16"
+    load_in_4bit: true

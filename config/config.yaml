@@ -1,0 +1,77 @@
+# TruthSim Configuration
+# ======================
+
+# Conversation Settings
+conversation:
+  max_turns: 15                    # Maximum conversation turns before forced termination
+  max_regeneration_attempts: 2     # Max retries when verifier rejects response
+  response_word_limit: 50          # Patient response word limit
+
+# Temperature Settings
+temperature:
+  generator: 0.7      # Patient Simulator Generator - enable natural variation
+  doctor: 0.3         # Doctor LLM - encourage focused questioning
+  verifier: 0.0       # Semantic Verifier - deterministic verification
+  judge: 0.0          # LLM-as-Judge - consistent scoring
+
+# Token Limits
+tokens:
+  max_input: 4096     # Maximum input context tokens
+  max_output: 256     # Maximum output tokens per response
+
+# Sampling Parameters
+sampling:
+  top_p: 0.95
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+
+# UMLS Context Extraction Limits
+umls:
+  synonyms_limit: 50        # Max synonyms per symptom
+  variations_limit: 25      # Max variations per symptom
+  relations_limit: 100      # Max SNOMED relations per symptom
+  api_version: "current"    # UMLS API version
+
+# Noise Configuration
+noise:
+  levels: [0, 1, 2, 3, 4]   # Available severity levels
+  default_level: 2          # Default noise level if not specified
+  pillars:
+    - memory
+    - health_literacy
+    - emotional_state
+    - communication_style
+    - social_cultural
+    - cognitive_processing
+
+# Evaluation Settings
+evaluation:
+  diagnosis_matching:
+    model: "gpt-4o"
+    temperature: 0.0
+  llm_judge:
+    model: "gpt-4o"
+    temperature: 0.0
+  metrics:
+    - top1_accuracy
+    - top3_accuracy
+    - hallucination_rate
+    - consistency_rate
+    - realism_score
+    - noise_fidelity
+
+# Logging
+logging:
+  level: "INFO"
+  format: "{time} | {level} | {message}"
+  save_to_file: true
+  log_dir: "./logs"
+
+# Paths
+paths:
+  data_dir: "./data"
+  patient_cases: "./data/patient_cases"
+  umls_cache: "./data/umls_cache"
+  conversations: "./data/conversations"
+  evaluations: "./data/evaluations"
+  prompts: "./prompts"
