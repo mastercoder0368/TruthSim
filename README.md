@@ -27,35 +27,14 @@ Medical LLMs achieve impressive performance on standardized benchmarks, yet thes
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                    OFFLINE PREPROCESSING                             │
-│  Patient Cases → UMLS API → Semantic Context Cache (JSON)           │
-└─────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                    RUNTIME SIMULATION                                │
-│                                                                      │
-│  ┌─────────────────┐         ┌─────────────────┐                    │
-│  │    Generator    │ ──r̂──► │    Verifier     │                    │
-│  │  (knows noise,  │         │  (knows UMLS +  │                    │
-│  │   no diagnosis) │ ◄─redo─ │   diagnosis)    │                    │
-│  └─────────────────┘         └────────┬────────┘                    │
-│                                       │ PASS                         │
-│                                       ▼                              │
-│  ┌─────────────────────────────────────────────────────────────┐    │
-│  │  Patient ◄────────────────────────────────────► Doctor LLM  │    │
-│  └─────────────────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                    EVALUATION                                        │
-│  Diagnosis Matching (GPT-4o) + LLM-as-Judge (GPT-4o)                │
-└─────────────────────────────────────────────────────────────────────┘
-```
+<p align="center">
+  <img src="fig/architecture.png" alt="TruthSim Architecture" width="100%">
+</p>
 
+**Overview:**
+- **Phase 1 (Offline):** Patient cases are preprocessed through the UMLS API to extract semantic context, which is cached as JSON for zero runtime latency.
+- **Phase 2 (Runtime):** The Generator produces noisy patient responses (without diagnosis access), while the Verifier validates them against UMLS context and ground truth diagnosis. Failed responses trigger regeneration.
+- **Evaluation:** Completed conversations are evaluated using GPT-4o for diagnosis matching and LLM-as-a-Judge assessment.
 ## Installation
 
 ### 1. Clone the repository
