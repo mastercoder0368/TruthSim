@@ -216,25 +216,9 @@ umls:
 | Llama-3.1-8B | 61.8% | 40.2% | -21.6% |
 | BioMistral-7B | 64.2% | 41.8% | -22.4% |
 
-## Citation
-
-```bibtex
-@article{truthsim2025,
-  title={Truth-Preserving Noisy Patient Simulator: A Controllable Framework for Realistic Medical AI Evaluation},
-  author={Anonymous},
-  journal={arXiv preprint},
-  year={2025}
-}
-```
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- UMLS/SNOMED CT from the National Library of Medicine
-- DDXPlus and MIMIC-IV-ED datasets
 
 ## Contact
 
