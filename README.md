@@ -28,7 +28,7 @@ Medical LLMs achieve impressive performance on standardized benchmarks, yet thes
 ## Architecture
 
 <p align="center">
-  <img src="fig/architecture.png" alt="TruthSim Architecture" width="100%">
+  <img src="fig/updated_architecture.png" alt="TruthSim Architecture" width="100%">
 </p>
 
 **Overview:**
