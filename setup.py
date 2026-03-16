@@ -9,17 +9,12 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 setup(
     name="truthsim",
     version="1.0.0",
-    author="Anonymous",
-    author_email="anonymous@example.com",
     description="TruthSim: Truth-Preserving Noisy Patient Simulator for Medical AI Evaluation",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/anonymous/truthsim",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     classifiers=[
-        "Development Status :: 4 - Beta",
-        "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
